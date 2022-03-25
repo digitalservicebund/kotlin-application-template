@@ -24,7 +24,7 @@ _user() {
 }
 
 _find_placeholder_strings() {
-  grep -rlZ 'java-application-template' --exclude-dir=.git --exclude-dir=.gradle --exclude-dir=.idea --exclude-dir=build --exclude=run.sh .
+  grep -rlZ 'kotlin-application-template' --exclude-dir=.git --exclude-dir=.gradle --exclude-dir=.idea --exclude-dir=build --exclude=run.sh .
 }
 
 _setup_repo() {
@@ -36,7 +36,7 @@ _setup_repo() {
     if [ -z "$newname" ]; then
       newname=$defaultname
     fi
-    _find_placeholder_strings | xargs sed -i '' 's/java-application-template/'"$newname"'/g'
+    _find_placeholder_strings | xargs sed -i '' 's/kotlin-application-template/'"$newname"'/g'
     _info "Renamed, please commit the changes! You might have to adapt the package structure as well.."
   fi
 }
