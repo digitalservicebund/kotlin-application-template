@@ -7,6 +7,9 @@
       "moduleLicense": "The Apache Software License, Version 2.0"
     },
     {
+      "moduleLicense": "The Apache License, Version 2.0"
+    },
+    {
       "moduleLicense": "Apache License, Version 2.0"
     },
     {
@@ -35,8 +38,13 @@
     },
     {
       "moduleLicense": null,
-      "moduleVersion": "2.13.0",
+      "moduleVersion": "2.13.2",
       "moduleName": "com.fasterxml.jackson:jackson-bom"
+    },
+    {
+      "moduleLicense": null,
+      "moduleVersion": "1.5.2",
+      "moduleName": "org.jetbrains.kotlinx:kotlinx-coroutines-core"
     }
   ]
 }
