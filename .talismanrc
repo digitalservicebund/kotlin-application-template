@@ -1,6 +1,6 @@
 fileignoreconfig:
   - filename: README.md
-    checksum: 137c517742dc69374654e105cafd02fee21935301512a9dba76a59d8d9cf6db4
+    checksum: 32862c6a51cccd6f68a7a09a0b968567134b510004aadb47865f182d0f7cf926
   - filename: build.gradle.kts
     checksum: e595b1476ec6a3f01db328da97b1c60048d2e6c46caed628b21de2eae3bf2123
   - filename: .github/workflows/pipeline.yml

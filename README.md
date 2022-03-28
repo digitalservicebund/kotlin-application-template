@@ -81,6 +81,15 @@ is being enforced via [Spotless](https://github.com/diffplug/spotless).
 ./gradlew spotlessApply
 ```
 
+### IntelliJ IDEA setup
+
+See https://github.com/pinterest/ktlint#-with-intellij-idea
+
+```bash
+brew install ktlint
+ktlint applyToIDEAProject
+```
+
 ## Git hooks
 
 The repo contains a [Lefthook](https://github.com/evilmartians/lefthook/blob/master/docs/full_guide.md) configuration,
