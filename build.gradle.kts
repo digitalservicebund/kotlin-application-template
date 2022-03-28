@@ -156,7 +156,7 @@ spotless {
         ktlint()
     }
 
-    val prettierVersion = "2.4.1"
+    val prettierVersion = "2.6.1"
 
     format("misc") {
         target("**/*.js", "**/*.json", "**/*.md", "**/*.yml")
