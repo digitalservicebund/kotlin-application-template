@@ -1,15 +1,14 @@
-# Java Application Template
+# Kotlin Application Template
 
 [![Pipeline](https://github.com/digitalservice4germany/kotlin-application-template/actions/workflows/pipeline.yml/badge.svg)](https://github.com/digitalservice4germany/kotlin-application-template/actions/workflows/pipeline.yml)
 [![Scan](https://github.com/digitalservice4germany/kotlin-application-template/actions/workflows/scan.yml/badge.svg)](https://github.com/digitalservice4germany/kotlin-application-template/actions/workflows/scan.yml)
 [![Secrets Check](https://github.com/digitalservice4germany/kotlin-application-template/actions/workflows/secrets-check.yml/badge.svg)](https://github.com/digitalservice4germany/kotlin-application-template/actions/workflows/secrets-check.yml)
 
-Java service built with
-the [Spring WebFlux reactive stack](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#spring-webflux).
+Kotlin service built with the [Spring WebFlux reactive stack](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#spring-webflux).
 
 ## Prerequisites
 
-Java 11, Docker for building + running the containerized application:
+Kotlin 1.6 w/ Java 11, Docker for building + running the containerized application:
 
 ```bash
 brew install openjdk@11
@@ -60,15 +59,15 @@ running any integration tests.
 
 Denoting an integration test is accomplished by using a JUnit 5 tag annotation: `@Tag("integration")`.
 
-Furthermore, there is another type of test worth mentioning. We're
-using [ArchUnit](https://www.archunit.org/getting-started)
+Furthermore, there is another type of test worth mentioning. We're using [ArchUnit](https://www.archunit.org/getting-started)
 for ensuring certain architectural characteristics, for instance making sure that there are no cyclic dependencies.
 
-## Formatting
+## Formatting & Linting
 
-Java source code formatting must conform to the [Google Java Style](https://google.github.io/styleguide/javaguide.html).
-Consistent formatting, for Java as well as various other types of source code, is being enforced
-via [Spotless](https://github.com/diffplug/spotless).
+For linting and formatting Kotlin code [ktlint](https://ktlint.github.io) is used.
+
+Consistent formatting for Kotlin, as well as various other types of source code (JSON, Markdown, Yaml, ...),
+is being enforced via [Spotless](https://github.com/diffplug/spotless).
 
 **Check formatting:**
 
@@ -143,9 +142,8 @@ COSIGN_EXPERIMENTAL=1 cosign verify "ghcr.io/digitalservice4germany/kotlin-appli
 
 ## Deployment
 
-Deployment is usually done automatically by the build-deploy
-pipeline ([GitHub Actions](https://docs.github.com/en/actions) workflow). If you need to push a new container image to
-the registry manually there are two ways to do this:
+Deployment is usually done automatically by the build-deploy pipeline ([GitHub Actions](https://docs.github.com/en/actions) workflow).
+If you need to push a new container image to the registry manually there are two ways to do this:
 
 **Via built-in Gradle task:**
 
