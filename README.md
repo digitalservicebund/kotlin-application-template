@@ -59,7 +59,8 @@ running any integration tests.
 
 Denoting an integration test is accomplished by using a JUnit 5 tag annotation: `@Tag("integration")`.
 
-Furthermore, there is another type of test worth mentioning. We're using [ArchUnit](https://www.archunit.org/getting-started)
+Furthermore, there is another type of test worth mentioning. We're
+using [ArchUnit](https://www.archunit.org/getting-started)
 for ensuring certain architectural characteristics, for instance making sure that there are no cyclic dependencies.
 
 ## Formatting & Linting
@@ -110,7 +111,7 @@ The hooks are supposed to help you to:
 ## Code quality analysis
 
 Continuous code quality analysis is performed in the pipeline upon pushing to trunk; it requires a
-token provided as `SONAR_TOKEN` repository secret that needs to be obtained from [https://sonarcloud.io].
+token provided as `SONAR_TOKEN` repository secret that needs to be obtained from https://sonarcloud.io.
 
 **To run the analysis locally:**
 
@@ -151,8 +152,8 @@ COSIGN_EXPERIMENTAL=1 cosign verify "ghcr.io/digitalservice4germany/kotlin-appli
 
 ## Deployment
 
-Deployment is usually done automatically by the build-deploy pipeline ([GitHub Actions](https://docs.github.com/en/actions) workflow).
-If you need to push a new container image to the registry manually there are two ways to do this:
+Deployment is performed automatically by the pipeline's `deploy` job. If you need to push a new container
+image to the registry manually there are two ways to do this:
 
 **Via built-in Gradle task:**
 
@@ -176,8 +177,8 @@ docker push "ghcr.io/digitalservice4germany/kotlin-application-template:$(git lo
 
 ## Vulnerability Scanning
 
-Scanning container images for vulnerabilities is done with [Trivy](https://github.com/aquasecurity/trivy)
-as part of the build pipeline step, as well as each night for the latest published image in the container
+Scanning container images for vulnerabilities is performed with [Trivy](https://github.com/aquasecurity/trivy)
+as part of the pipeline's `build` job, as well as each night for the latest published image in the container
 repository.
 
 **To run a scan locally:**
@@ -195,8 +196,8 @@ trivy image --severity HIGH,CRITICAL ghcr.io/digitalservice4germany/kotlin-appli
 
 ## License Scanning
 
-Continuous license scanning is performed as part of the pipeline's build job. Whenever a production
-dependency is being added with a yet unknown license the build is going to fail.
+License scanning is performed as part of the pipeline's `build` job. Whenever a production dependency
+is being added with a yet unknown license the build is going to fail.
 
 **To run a scan locally:**
 
