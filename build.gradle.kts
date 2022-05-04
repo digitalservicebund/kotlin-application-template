@@ -177,21 +177,22 @@ spotless {
     kotlinGradle {
         ktlint()
     }
-
-    val prettierVersion = "2.6.1"
-
     format("misc") {
-        target("**/*.js", "**/*.json", "**/*.md", "**/*.yml")
-        prettier(prettierVersion)
-    }
-    format("properties") {
-        target("**/*.properties")
-        prettier(mapOf("prettier" to prettierVersion, "prettier-plugin-properties" to "0.1.0"))
-            .config(mapOf("keySeparator" to "="))
-    }
-    format("shellscript") {
-        target("**/*.sh")
-        prettier(mapOf("prettier" to prettierVersion, "prettier-plugin-sh" to "0.7.1"))
+        target(
+            "**/*.js",
+            "**/*.json",
+            "**/*.md",
+            "**/*.properties",
+            "**/*.sh",
+            "**/*.yml"
+        )
+        prettier(
+            mapOf(
+                "prettier" to "2.6.1",
+                "prettier-plugin-sh" to "0.7.1",
+                "prettier-plugin-properties" to "0.1.0"
+            )
+        ).config(mapOf("keySeparator" to "="))
     }
 }
 
