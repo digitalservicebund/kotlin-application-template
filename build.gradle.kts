@@ -136,7 +136,7 @@ tasks {
     bootBuildImage {
         val containerRegistry = System.getenv("CONTAINER_REGISTRY") ?: "ghcr.io"
         val containerImageName = System.getenv("CONTAINER_IMAGE_NAME")
-            ?: "digitalservice4germany/${rootProject.name}"
+            ?: "digitalservicebund/${rootProject.name}"
         val containerImageVersion = System.getenv("CONTAINER_IMAGE_VERSION") ?: "latest"
 
         imageName = "$containerRegistry/$containerImageName:$containerImageVersion"
@@ -155,8 +155,8 @@ tasks {
         // NOTE: sonarqube picks up combined coverage correctly without further configuration from:
         // build/reports/jacoco/test/jacocoTestReport.xml
         properties {
-            property("sonar.projectKey", "digitalservice4germany_kotlin-application-template")
-            property("sonar.organization", "digitalservice4germany")
+            property("sonar.projectKey", "digitalservicebund_kotlin-application-template")
+            property("sonar.organization", "digitalservicebund")
             property("sonar.host.url", "https://sonarcloud.io")
         }
     }
