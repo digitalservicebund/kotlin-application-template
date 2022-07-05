@@ -8,6 +8,6 @@ import com.tngtech.archunit.library.dependencies.SlicesRuleDefinition.slices
 class ArchitectureFitnessTest {
 
     @ArchTest
-    val `prevent package import cycles` =
+    val `packages should be free of cycles` =
         slices().matching("de.bund.digitalservice.(**)").should().beFreeOfCycles()
 }
