@@ -44,13 +44,6 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
-    // => CVE-2021-44228, CVE-2021-45105
-    implementation("org.apache.logging.log4j:log4j-api:2.18.0")
-    // => CVE-2021-44228, CVE-2021-45105
-    implementation("org.apache.logging.log4j:log4j-to-slf4j:2.18.0")
-    // => CVE-2021-42550
-    implementation("ch.qos.logback:logback-classic:1.2.9")
-    implementation("ch.qos.logback:logback-core:1.2.9")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 
