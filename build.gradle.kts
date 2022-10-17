@@ -59,7 +59,7 @@ dependencies {
     testImplementation("com.ninja-squad:springmockk:3.1.1")
     testImplementation("io.projectreactor:reactor-test")
     testImplementation("org.springframework.security:spring-security-test")
-    testImplementation("com.tngtech.archunit:archunit-junit5:0.23.0")
+    testImplementation("com.tngtech.archunit:archunit-junit5:1.0.0")
 }
 
 tasks {
