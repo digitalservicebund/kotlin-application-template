@@ -34,6 +34,12 @@ dependencies {
         exclude(group = "io.netty", module = "netty-tcnative-classes")
         because("CVE-2021-43797, not using Tomcat")
     }
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+
     // => CVE-2021-37136, CVE-2021-37137, CVE-2021-43797
     implementation("io.netty:netty-all:4.1.77.Final") {
         exclude(group = "io.netty", module = "netty-tcnative-classes")
@@ -41,11 +47,8 @@ dependencies {
     }
     // => CVE-2022-42003
     implementation("com.fasterxml.jackson.core:jackson-databind:2.14.0-rc2")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+    // => CVE-2022-25857
+    implementation("org.yaml:snakeyaml:1.33")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 
