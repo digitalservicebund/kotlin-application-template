@@ -27,6 +27,15 @@ jacoco {
 
 testlogger { theme = com.adarshr.gradle.testlogger.theme.ThemeType.MOCHA }
 
+configurations.all {
+    resolutionStrategy.eachDependency {
+        if (requested.group == "io.projectreactor.netty") {
+            useVersion("1.0.24")
+            because("addresses CVE-2022-31684, using a constraint didn't work")
+        }
+    }
+}
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-security")
