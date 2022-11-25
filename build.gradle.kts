@@ -2,7 +2,7 @@ import com.github.jk1.license.filter.LicenseBundleNormalizer
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.7.0"
+    id("org.springframework.boot") version "3.0.0"
     id("io.spring.dependency-management") version "1.1.0"
     kotlin("jvm") version "1.7.0"
     kotlin("plugin.spring") version "1.7.0"
@@ -27,15 +27,6 @@ jacoco {
 
 testlogger { theme = com.adarshr.gradle.testlogger.theme.ThemeType.MOCHA }
 
-configurations.all {
-    resolutionStrategy.eachDependency {
-        if (requested.group == "io.projectreactor.netty") {
-            useVersion("1.0.24")
-            because("addresses CVE-2022-31684, using a constraint didn't work")
-        }
-    }
-}
-
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-security")
@@ -45,13 +36,6 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
-
-    // => CVE-2022-25857
-    implementation("org.yaml:snakeyaml:1.33")
-    // => CVE-2022-31692
-    implementation("org.springframework.security:spring-security-core:6.0.0")
-    // => CVE-2022-42003
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.14.0-rc2")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 
@@ -133,15 +117,15 @@ tasks {
             ?: "digitalservicebund/${rootProject.name}"
         val containerImageVersion = System.getenv("CONTAINER_IMAGE_VERSION") ?: "latest"
 
-        imageName = "$containerRegistry/$containerImageName:$containerImageVersion"
-        builder = "paketobuildpacks/builder:tiny"
-        isPublish = false
+        imageName.set("$containerRegistry/$containerImageName:$containerImageVersion")
+        builder.set("paketobuildpacks/builder:tiny")
+        publish.set(false)
 
         docker {
             publishRegistry {
-                username = System.getenv("CONTAINER_REGISTRY_USER") ?: ""
-                password = System.getenv("CONTAINER_REGISTRY_PASSWORD") ?: ""
-                url = "https://$containerRegistry"
+                username.set(System.getenv("CONTAINER_REGISTRY_USER") ?: "")
+                password.set(System.getenv("CONTAINER_REGISTRY_PASSWORD") ?: "")
+                url.set("https://$containerRegistry")
             }
         }
     }

@@ -2,7 +2,7 @@ fileignoreconfig:
   - filename: README.md
     ignore_detectors: [filecontent]
   - filename: build.gradle.kts
-    checksum: b597e9b07172bc63df033fdf0c991370b0f566227183797eaa9f6d222189a1ec
+    checksum: 9100a75f1d3ff0a4298b104af0c3ffc5ae458579777820a7ff8fe9e56987cd41
   - filename: .github/workflows/pipeline.yml
     checksum: 947e5a3bcaadbb89ff247682d2c0f220f18d98623a988165d82e7d3ff01a53af
   - filename: .github/workflows/secrets-check.yml
