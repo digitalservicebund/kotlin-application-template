@@ -6,7 +6,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.0"
     kotlin("jvm") version "1.8.0"
     kotlin("plugin.spring") version "1.8.0"
-    id("com.diffplug.spotless") version "6.12.0"
+    id("com.diffplug.spotless") version "6.13.0"
     id("jacoco")
     id("org.sonarqube") version "3.5.0.2730"
     id("com.github.jk1.dependency-license-report") version "2.1"
@@ -88,8 +88,8 @@ tasks {
             files(
                 fileTree(project.buildDir.absolutePath) {
                     include("jacoco/*.exec")
-                }
-            )
+                },
+            ),
         )
 
         // Prevent Spring Boot + Kotlin compilation artifact skewing coverage!
@@ -99,8 +99,8 @@ tasks {
                     fileTree(it) {
                         exclude("**/ApplicationKt**")
                     }
-                }
-            )
+                },
+            ),
         )
 
         reports {
@@ -163,14 +163,14 @@ spotless {
             "**/*.md",
             "**/*.properties",
             "**/*.sh",
-            "**/*.yml"
+            "**/*.yml",
         )
         prettier(
             mapOf(
                 "prettier" to "2.6.1",
                 "prettier-plugin-sh" to "0.7.1",
-                "prettier-plugin-properties" to "0.1.0"
-            )
+                "prettier-plugin-properties" to "0.1.0",
+            ),
         ).config(mapOf("keySeparator" to "="))
     }
 }
@@ -182,6 +182,6 @@ licenseReport {
     filters = arrayOf(
         // With second arg true we get the default transformations:
         // https://github.com/jk1/Gradle-License-Report/blob/7cf695c38126b63ef9e907345adab84dfa92ea0e/src/main/resources/default-license-normalizer-bundle.json
-        LicenseBundleNormalizer(null, true)
+        LicenseBundleNormalizer(null, true),
     )
 }
