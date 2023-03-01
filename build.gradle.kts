@@ -57,7 +57,7 @@ tasks {
         }
     }
 
-    withType<Test> {
+    test {
         useJUnitPlatform {
             excludeTags("integration")
         }
