@@ -130,7 +130,7 @@ tasks {
         }
     }
 
-    sonarqube {
+    sonar {
         // NOTE: sonarqube picks up combined coverage correctly without further configuration from:
         // build/reports/jacoco/test/jacocoTestReport.xml
         properties {
