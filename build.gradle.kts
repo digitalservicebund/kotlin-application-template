@@ -130,15 +130,6 @@ tasks {
         }
     }
 
-    sonar {
-        // NOTE: sonarqube picks up combined coverage correctly without further configuration from:
-        // build/reports/jacoco/test/jacocoTestReport.xml
-        properties {
-            property("sonar.projectKey", "digitalservicebund_kotlin-application-template")
-            property("sonar.organization", "digitalservicebund")
-            property("sonar.host.url", "https://sonarcloud.io")
-        }
-    }
     getByName("sonarqube") {
         dependsOn(jacocoTestReport)
     }
@@ -146,6 +137,16 @@ tasks {
     jar {
         // We have no need for the plain archive, thus skip creation for build speedup!
         enabled = false
+    }
+}
+
+sonar {
+    // NOTE: sonarqube picks up combined coverage correctly without further configuration from:
+    // build/reports/jacoco/test/jacocoTestReport.xml
+    properties {
+        property("sonar.projectKey", "digitalservicebund_kotlin-application-template")
+        property("sonar.organization", "digitalservicebund")
+        property("sonar.host.url", "https://sonarcloud.io")
     }
 }
 
