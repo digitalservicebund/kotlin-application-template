@@ -1,11 +1,11 @@
 [versions]
 # @keep
-jacoco = "0.8.8"
-kotlin = "1.8.0"
-spring-boot = "3.0.0"
+jacoco = "0.8.10"
+kotlin = "1.9.0"
+spring-boot = "3.1.2"
 
 [libraries]
-archunit-junit5 = "com.tngtech.archunit:archunit-junit5:1.0.0"
+archunit-junit5 = "com.tngtech.archunit:archunit-junit5:1.0.1"
 jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin" }
 kotlin-bom = { module = "org.jetbrains.kotlin:kotlin-bom", version.ref = "kotlin" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect" }
@@ -19,14 +19,16 @@ spring-boot-starter-security = { module = "org.springframework.boot:spring-boot-
 spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
 spring-boot-starter-webflux = { module = "org.springframework.boot:spring-boot-starter-webflux" }
 spring-security-test = { module = "org.springframework.security:spring-security-test" }
-springmockk = "com.ninja-squad:springmockk:4.0.0"
+springmockk = "com.ninja-squad:springmockk:4.0.2"
 
 [plugins]
-dependency-license-report = "com.github.jk1.dependency-license-report:2.1"
+dependency-license-report = "com.github.jk1.dependency-license-report:2.5"
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
 sonarqube = "org.sonarqube:4.3.0.3225"
-spotless = "com.diffplug.spotless:6.14.1"
+spotless = "com.diffplug.spotless:6.20.0"
 spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
-spring-dependency-management = "io.spring.dependency-management:1.1.0"
+spring-dependency-management = "io.spring.dependency-management:1.1.2"
 test-logger = "com.adarshr.test-logger:3.2.0"
+version-catalog-update = "nl.littlerobots.version-catalog-update:0.8.1"
+versions = "com.github.ben-manes.versions:0.47.0"

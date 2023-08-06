@@ -12,6 +12,8 @@ plugins {
     alias(libs.plugins.sonarqube)
     alias(libs.plugins.dependency.license.report)
     alias(libs.plugins.test.logger)
+    alias(libs.plugins.version.catalog.update)
+    alias(libs.plugins.versions)
 }
 
 group = "de.bund.digitalservice"
@@ -93,6 +95,17 @@ tasks {
 
     check {
         dependsOn(testCodeCoverageReport, getByName("integrationTestCodeCoverageReport"))
+    }
+
+    withType(com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask::class) {
+        fun isStable(version: String): Boolean {
+            val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.uppercase().contains(it) }
+            val regex = "^[0-9,.v-]+(-r)?$".toRegex()
+            return stableKeyword || regex.matches(version)
+        }
+        gradleReleaseChannel = "current"
+        revision = "release"
+        rejectVersionIf { !isStable(candidate.version) }
     }
 
     bootBuildImage {
