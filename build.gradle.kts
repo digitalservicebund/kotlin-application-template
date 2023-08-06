@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.kotlin.spring)
     alias(libs.plugins.spotless)
     id("jacoco")
+    id("jacoco-report-aggregation")
     alias(libs.plugins.sonarqube)
     alias(libs.plugins.dependency.license.report)
     alias(libs.plugins.test.logger)
@@ -39,15 +40,47 @@ dependencies {
     implementation(libs.kotlinx.coroutines.reactor)
 
     developmentOnly(libs.spring.boot.devtools)
+}
 
-    testImplementation("org.springframework.boot:spring-boot-starter-test") {
-        exclude("org.mockito", "mockito-core")
-        because("Use MockK instead of Mockito since it is better suited for Kotlin")
+testing {
+    @Suppress("UnstableApiUsage")
+    suites {
+        val test by getting(JvmTestSuite::class) {
+            testType.set(TestSuiteType.UNIT_TEST)
+            useJUnitJupiter()
+            dependencies {
+                implementation(libs.spring.boot.starter.test) {
+                    exclude("org.mockito", "mockito-core")
+                    because("Use MockK instead of Mockito since it is better suited for Kotlin")
+                }
+                implementation(libs.springmockk)
+                implementation(libs.reactor.test)
+                implementation(libs.spring.security.test)
+                implementation(libs.archunit.junit5)
+            }
+        }
+
+        register("integrationTest", JvmTestSuite::class) {
+            testType.set(TestSuiteType.INTEGRATION_TEST)
+            dependencies {
+                implementation(project())
+                implementation(libs.spring.boot.starter.test) {
+                    exclude("org.mockito", "mockito-core")
+                    because("Use MockK instead of Mockito since it is better suited for Kotlin")
+                }
+                implementation(libs.springmockk)
+                implementation(libs.reactor.test)
+                implementation(libs.spring.security.test)
+            }
+            targets {
+                all {
+                    testTask.configure {
+                        shouldRunAfter(test)
+                    }
+                }
+            }
+        }
     }
-    testImplementation(libs.springmockk)
-    testImplementation(libs.reactor.test)
-    testImplementation(libs.spring.security.test)
-    testImplementation(libs.archunit.junit5)
 }
 
 tasks {
@@ -58,58 +91,8 @@ tasks {
         }
     }
 
-    test {
-        useJUnitPlatform {
-            excludeTags("integration")
-        }
-    }
-
-    register<Test>("integrationTest") {
-        description = "Runs the integration tests."
-        group = "verification"
-        useJUnitPlatform {
-            includeTags("integration")
-        }
-
-        // So that running integration test require running unit tests first,
-        // and we won"t even attempt running integration tests when there are
-        // failing unit tests.
-        dependsOn(test)
-        finalizedBy(jacocoTestReport)
-    }
     check {
-        dependsOn(getByName("integrationTest"))
-    }
-
-    jacocoTestReport {
-        // Jacoco hooks into all tasks of type: Test automatically, but results for each of these
-        // tasks are kept separately and are not combined out of the box... we want to gather
-        // coverage of our unit and integration tests as a single report!
-        executionData.setFrom(
-            files(
-                fileTree(project.buildDir.absolutePath) {
-                    include("jacoco/*.exec")
-                },
-            ),
-        )
-
-        // Prevent Spring Boot + Kotlin compilation artifact skewing coverage!
-        classDirectories.setFrom(
-            files(
-                classDirectories.files.map {
-                    fileTree(it) {
-                        exclude("**/ApplicationKt**")
-                    }
-                },
-            ),
-        )
-
-        reports {
-            xml.required.set(true)
-            html.required.set(true)
-        }
-
-        dependsOn(getByName("integrationTest")) // All tests are required to run before generating a report..
+        dependsOn(testCodeCoverageReport, getByName("integrationTestCodeCoverageReport"))
     }
 
     bootBuildImage {
@@ -131,19 +114,51 @@ tasks {
         }
     }
 
-    getByName("sonarqube") {
-        dependsOn(jacocoTestReport)
+    getByName("sonar") {
+        dependsOn(testCodeCoverageReport, getByName("integrationTestCodeCoverageReport"))
     }
+}
 
-    jar {
-        // We have no need for the plain archive, thus skip creation for build speedup!
-        enabled = false
+reporting {
+    reports {
+        @Suppress("UnstableApiUsage")
+        withType(JacocoCoverageReport::class) {
+            reportTask.configure {
+                classDirectories.setFrom(
+                    files(
+                        classDirectories.files.map {
+                            fileTree(it) {
+                                exclude("**/ApplicationKt**")
+                            }
+                        },
+                    ),
+                )
+            }
+        }
+
+        @Suppress("UnstableApiUsage")
+        create<JacocoCoverageReport>("aggregateCodeCoverageReport") {
+            testType.set(TestSuiteType.UNIT_TEST)
+            reportTask {
+                executionData.from(
+                    configurations["aggregateCodeCoverageReportResults"]
+                        .incoming.artifactView {
+                            lenient(true)
+                            withVariantReselection()
+                            attributes {
+                                attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.VERIFICATION))
+                                attribute(TestSuiteType.TEST_SUITE_TYPE_ATTRIBUTE, objects.named(TestSuiteType.INTEGRATION_TEST))
+                                attribute(VerificationType.VERIFICATION_TYPE_ATTRIBUTE, objects.named(VerificationType.JACOCO_RESULTS))
+                                attribute(ArtifactTypeDefinition.ARTIFACT_TYPE_ATTRIBUTE, ArtifactTypeDefinition.BINARY_DATA_TYPE)
+                            }
+                        }.files,
+                )
+            }
+        }
     }
 }
 
 sonar {
-    // NOTE: sonarqube picks up combined coverage correctly without further configuration from:
-    // build/reports/jacoco/test/jacocoTestReport.xml
     properties {
         property("sonar.projectKey", "digitalservicebund_kotlin-application-template")
         property("sonar.organization", "digitalservicebund")
