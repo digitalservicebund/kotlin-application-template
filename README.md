@@ -8,7 +8,7 @@ Kotlin service built with the [Spring WebFlux reactive stack](https://docs.sprin
 
 ## Prerequisites
 
-Kotlin 1.6 w/ Java 17, Docker for building + running the containerized application:
+Kotlin 1.9 w/ Java 17, Docker for building + running the containerized application:
 
 ```bash
 brew install openjdk@17
@@ -33,7 +33,7 @@ This will replace placeholders in the application template and install a couple 
 
 ## Tests
 
-The project has distinct unit and integration test sets.
+The project has distinct unit and integration test suites.
 
 **To run just the unit tests:**
 
@@ -47,17 +47,7 @@ The project has distinct unit and integration test sets.
 ./gradlew integrationTest
 ```
 
-**Note:** Running integration tests requires passing unit tests (in Gradle terms: integration tests depend on unit
-tests), so unit tests are going to be run first. In case there are failing unit tests we won't attempt to continue
-running any integration tests.
-
-**To run integration tests exclusively, without the unit test dependency:**
-
-```bash
-./gradlew integrationTest --exclude-task test
-```
-
-Denoting an integration test is accomplished by using a JUnit 5 tag annotation: `@Tag("integration")`.
+You can find the unit tests in `src/tests/kotlin` and the integration tests in `src/integrationTest/kotlin`.
 
 Furthermore, there is another type of test worth mentioning. We're
 using [ArchUnit](https://www.archunit.org/getting-started)
@@ -116,10 +106,10 @@ token provided as `SONAR_TOKEN` repository secret that needs to be obtained from
 **To run the analysis locally:**
 
 ```bash
-SONAR_TOKEN=[sonar-token] ./gradlew sonarqube
+SONAR_TOKEN=[sonar-token] ./gradlew sonar
 ```
 
-Go to [https://sonarcloud.io](https://sonarcloud.io/dashboard?id=digitalservicebund_java-application-template)
+Go to [https://sonarcloud.io](https://sonarcloud.io/dashboard?id=digitalservicebund_kotlin-application-template)
 for the analysis results.
 
 ## Container image
