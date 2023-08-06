@@ -2,15 +2,15 @@ import com.github.jk1.license.filter.LicenseBundleNormalizer
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "3.0.0"
-    id("io.spring.dependency-management") version "1.1.0"
-    kotlin("jvm") version "1.8.0"
-    kotlin("plugin.spring") version "1.8.0"
-    id("com.diffplug.spotless") version "6.16.0"
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.spring.dependency.management)
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.spring)
+    alias(libs.plugins.spotless)
     id("jacoco")
-    id("org.sonarqube") version "4.0.0.2929"
-    id("com.github.jk1.dependency-license-report") version "2.1"
-    id("com.adarshr.test-logger") version "3.2.0"
+    alias(libs.plugins.sonarqube)
+    alias(libs.plugins.dependency.license.report)
+    alias(libs.plugins.test.logger)
 }
 
 group = "de.bund.digitalservice"
@@ -22,31 +22,32 @@ repositories {
 }
 
 jacoco {
-    toolVersion = "0.8.8"
+    toolVersion = libs.versions.jacoco.get()
 }
 
 testlogger { theme = com.adarshr.gradle.testlogger.theme.ThemeType.MOCHA }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation("org.springframework.boot:spring-boot-starter-security")
-    implementation("org.springframework.boot:spring-boot-starter-webflux")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+    implementation(platform(libs.kotlin.bom))
+    implementation(libs.spring.boot.starter.actuator)
+    implementation(libs.spring.boot.starter.security)
+    implementation(libs.spring.boot.starter.webflux)
+    implementation(libs.jackson.module.kotlin)
+    implementation(libs.reactor.kotlin.extensions)
+    implementation(libs.kotlin.reflect)
+    implementation(libs.kotlin.stdlib.jdk8)
+    implementation(libs.kotlinx.coroutines.reactor)
 
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
+    developmentOnly(libs.spring.boot.devtools)
 
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude("org.mockito", "mockito-core")
         because("Use MockK instead of Mockito since it is better suited for Kotlin")
     }
-    testImplementation("com.ninja-squad:springmockk:4.0.0")
-    testImplementation("io.projectreactor:reactor-test")
-    testImplementation("org.springframework.security:spring-security-test")
-    testImplementation("com.tngtech.archunit:archunit-junit5:1.0.0")
+    testImplementation(libs.springmockk)
+    testImplementation(libs.reactor.test)
+    testImplementation(libs.spring.security.test)
+    testImplementation(libs.archunit.junit5)
 }
 
 tasks {

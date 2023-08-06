@@ -24,6 +24,10 @@
     },
     {
       "moduleLicense": null,
+      "moduleName": "org.jetbrains.kotlin:kotlin-bom"
+    },
+    {
+      "moduleLicense": null,
       "moduleName": "org.jetbrains.kotlinx:kotlinx-coroutines-core"
     },
     {
