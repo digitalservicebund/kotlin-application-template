@@ -47,7 +47,7 @@ The project has distinct unit and integration test suites.
 ./gradlew integrationTest
 ```
 
-You can find the unit tests in `src/tests/kotlin` and the integration tests in `src/integrationTest/kotlin`.
+You can find the unit tests in `src/test/kotlin` and the integration tests in `src/integrationTest/kotlin`.
 
 Furthermore, there is another type of test worth mentioning. We're
 using [ArchUnit](https://www.archunit.org/getting-started)
@@ -212,4 +212,4 @@ See https://github.com/npryce/adr-tools regarding usage.
 ## Slack notifications
 
 Opt in to CI posting notifications for failing jobs to a particular Slack channel by setting a repository secret
-with the name `SLACK_WEBHOOK_URL`, containing a url for [Incoming Webhooks](https://api.slack.com/messaging/webhooks).
+with the name `SLACK_WEBHOOK_URL`, containing a URL for [Incoming Webhooks](https://api.slack.com/messaging/webhooks).
