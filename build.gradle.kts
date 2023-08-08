@@ -41,6 +41,9 @@ dependencies {
     implementation(libs.kotlin.stdlib.jdk8)
     implementation(libs.kotlinx.coroutines.reactor)
 
+    // CVE-2022-1471
+    implementation(libs.snakeyaml)
+
     developmentOnly(libs.spring.boot.devtools)
 }
 
@@ -82,6 +85,15 @@ testing {
                 }
             }
         }
+    }
+}
+
+configurations {
+    val integrationTestImplementation by getting {
+        extendsFrom(implementation.get())
+    }
+    val aggregateCodeCoverageReportResults by getting {
+        extendsFrom(implementation.get())
     }
 }
 
