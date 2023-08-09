@@ -5,7 +5,7 @@ kotlin = "1.9.0"
 spring-boot = "3.1.2"
 
 [libraries]
-archunit-junit5 = "com.tngtech.archunit:archunit-junit5:1.0.1"
+archunit-junit5 = "com.tngtech.archunit:archunit-junit5:1.1.0"
 jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin" }
 kotlin-bom = { module = "org.jetbrains.kotlin:kotlin-bom", version.ref = "kotlin" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect" }
