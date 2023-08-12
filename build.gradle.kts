@@ -7,13 +7,12 @@ plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.spring)
     alias(libs.plugins.spotless)
-    id("jacoco")
-    id("jacoco-report-aggregation")
     alias(libs.plugins.sonarqube)
     alias(libs.plugins.dependency.license.report)
     alias(libs.plugins.test.logger)
-    alias(libs.plugins.version.catalog.update)
-    alias(libs.plugins.versions)
+    id("de.bund.digitalservice.version-catalog-conventions")
+    id("jacoco")
+    id("jacoco-report-aggregation")
 }
 
 group = "de.bund.digitalservice"
@@ -112,17 +111,6 @@ tasks {
         dependsOn(testCodeCoverageReport, getByName("integrationTestCodeCoverageReport"))
     }
 
-    withType(com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask::class) {
-        fun isStable(version: String): Boolean {
-            val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.uppercase().contains(it) }
-            val regex = "^[0-9,.v-]+(-r)?$".toRegex()
-            return stableKeyword || regex.matches(version)
-        }
-        gradleReleaseChannel = "current"
-        revision = "release"
-        rejectVersionIf { !isStable(candidate.version) }
-    }
-
     bootBuildImage {
         val containerRegistry = System.getenv("CONTAINER_REGISTRY") ?: "ghcr.io"
         val containerImageName =
@@ -211,6 +199,7 @@ spotless {
             "**/*.sh",
             "**/*.yml",
         )
+        targetExclude("buildSrc/build/**")
         prettier(
             mapOf(
                 "prettier" to "2.6.1",
