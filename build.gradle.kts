@@ -9,8 +9,6 @@ plugins {
     id("de.bund.digitalservice.version-catalog-conventions")
 }
 
-java.sourceCompatibility = JavaVersion.VERSION_17
-
 dependencies {
     implementation(platform(libs.kotlin.bom))
     implementation(libs.spring.boot.starter.actuator)
