@@ -4,7 +4,7 @@ plugins {
 
 sonar {
     properties {
-        property("sonar.projectKey", "digitalservicebund_kotlin-application-template")
+        property("sonar.projectKey", "digitalservicebund_${rootProject.name}")
         property("sonar.organization", "digitalservicebund")
         property("sonar.host.url", "https://sonarcloud.io")
     }
