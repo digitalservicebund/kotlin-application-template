@@ -5,9 +5,9 @@ plugins {
     alias(libs.plugins.spring.dependency.management)
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.spring)
-    alias(libs.plugins.sonarqube)
     alias(libs.plugins.test.logger)
     id("de.bund.digitalservice.license-report-conventions")
+    id("de.bund.digitalservice.sonar-conventions")
     id("de.bund.digitalservice.spotless-conventions")
     id("de.bund.digitalservice.version-catalog-conventions")
     id("jacoco")
@@ -171,13 +171,5 @@ reporting {
                 )
             }
         }
-    }
-}
-
-sonar {
-    properties {
-        property("sonar.projectKey", "digitalservicebund_kotlin-application-template")
-        property("sonar.organization", "digitalservicebund")
-        property("sonar.host.url", "https://sonarcloud.io")
     }
 }
