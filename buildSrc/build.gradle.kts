@@ -4,6 +4,7 @@ plugins {
 
 dependencies {
     implementation(plugin(libs.plugins.dependency.license.report))
+    implementation(plugin(libs.plugins.kotlin.jvm))
     implementation(plugin(libs.plugins.sonarqube))
     implementation(plugin(libs.plugins.spotless))
     implementation(plugin(libs.plugins.version.catalog.update))

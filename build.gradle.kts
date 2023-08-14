@@ -1,12 +1,10 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     alias(libs.plugins.spring.boot)
     alias(libs.plugins.spring.dependency.management)
-    alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.spring)
     alias(libs.plugins.test.logger)
     id("de.bund.digitalservice.license-report-conventions")
+    id("de.bund.digitalservice.kotlin-conventions")
     id("de.bund.digitalservice.sonar-conventions")
     id("de.bund.digitalservice.spotless-conventions")
     id("de.bund.digitalservice.version-catalog-conventions")
@@ -99,12 +97,6 @@ configurations {
 }
 
 tasks {
-    withType<KotlinCompile> {
-        kotlinOptions {
-            freeCompilerArgs = listOf("-Xjsr305=strict")
-            jvmTarget = "17"
-        }
-    }
 
     check {
         dependsOn(testCodeCoverageReport, getByName("integrationTestCodeCoverageReport"))
