@@ -2,25 +2,17 @@ plugins {
     alias(libs.plugins.spring.boot)
     alias(libs.plugins.spring.dependency.management)
     alias(libs.plugins.kotlin.spring)
-    alias(libs.plugins.test.logger)
     id("de.bund.digitalservice.license-report-conventions")
     id("de.bund.digitalservice.kotlin-conventions")
     id("de.bund.digitalservice.sonar-conventions")
     id("de.bund.digitalservice.spotless-conventions")
+    id("de.bund.digitalservice.test-conventions")
     id("de.bund.digitalservice.version-catalog-conventions")
-    id("jacoco")
-    id("jacoco-report-aggregation")
 }
 
 group = "de.bund.digitalservice"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
-
-jacoco {
-    toolVersion = libs.versions.jacoco.get()
-}
-
-testlogger { theme = com.adarshr.gradle.testlogger.theme.ThemeType.MOCHA }
 
 dependencies {
     implementation(platform(libs.kotlin.bom))
@@ -49,8 +41,7 @@ dependencies {
 testing {
     @Suppress("UnstableApiUsage")
     suites {
-        val test by getting(JvmTestSuite::class) {
-            testType.set(TestSuiteType.UNIT_TEST)
+        getByName<JvmTestSuite>("test") {
             useJUnitJupiter()
             dependencies {
                 implementation(libs.spring.boot.starter.test) {
@@ -64,10 +55,8 @@ testing {
             }
         }
 
-        register("integrationTest", JvmTestSuite::class) {
-            testType.set(TestSuiteType.INTEGRATION_TEST)
+        getByName<JvmTestSuite>("integrationTest") {
             dependencies {
-                implementation(project())
                 implementation(libs.spring.boot.starter.test) {
                     exclude("org.mockito", "mockito-core")
                     because("Use MockK instead of Mockito since it is better suited for Kotlin")
@@ -76,31 +65,11 @@ testing {
                 implementation(libs.reactor.test)
                 implementation(libs.spring.security.test)
             }
-            targets {
-                all {
-                    testTask.configure {
-                        shouldRunAfter(test)
-                    }
-                }
-            }
         }
     }
 }
 
-configurations {
-    val integrationTestImplementation by getting {
-        extendsFrom(implementation.get())
-    }
-    val aggregateCodeCoverageReportResults by getting {
-        extendsFrom(implementation.get())
-    }
-}
-
 tasks {
-
-    check {
-        dependsOn(testCodeCoverageReport, getByName("integrationTestCodeCoverageReport"))
-    }
 
     bootBuildImage {
         val containerRegistry = System.getenv("CONTAINER_REGISTRY") ?: "ghcr.io"
@@ -118,49 +87,6 @@ tasks {
                 username.set(System.getenv("CONTAINER_REGISTRY_USER") ?: "")
                 password.set(System.getenv("CONTAINER_REGISTRY_PASSWORD") ?: "")
                 url.set("https://$containerRegistry")
-            }
-        }
-    }
-
-    getByName("sonar") {
-        dependsOn(testCodeCoverageReport, getByName("integrationTestCodeCoverageReport"))
-    }
-}
-
-reporting {
-    reports {
-        @Suppress("UnstableApiUsage")
-        withType(JacocoCoverageReport::class) {
-            reportTask.configure {
-                classDirectories.setFrom(
-                    files(
-                        classDirectories.files.map {
-                            fileTree(it) {
-                                exclude("**/ApplicationKt**")
-                            }
-                        },
-                    ),
-                )
-            }
-        }
-
-        @Suppress("UnstableApiUsage")
-        create<JacocoCoverageReport>("aggregateCodeCoverageReport") {
-            testType.set(TestSuiteType.UNIT_TEST)
-            reportTask {
-                executionData.from(
-                    configurations["aggregateCodeCoverageReportResults"]
-                        .incoming.artifactView {
-                            lenient(true)
-                            withVariantReselection()
-                            attributes {
-                                attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.VERIFICATION))
-                                attribute(TestSuiteType.TEST_SUITE_TYPE_ATTRIBUTE, objects.named(TestSuiteType.INTEGRATION_TEST))
-                                attribute(VerificationType.VERIFICATION_TYPE_ATTRIBUTE, objects.named(VerificationType.JACOCO_RESULTS))
-                                attribute(ArtifactTypeDefinition.ARTIFACT_TYPE_ATTRIBUTE, ArtifactTypeDefinition.BINARY_DATA_TYPE)
-                            }
-                        }.files,
-                )
             }
         }
     }

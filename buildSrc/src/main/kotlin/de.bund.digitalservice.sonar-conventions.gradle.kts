@@ -9,3 +9,7 @@ sonar {
         property("sonar.host.url", "https://sonarcloud.io")
     }
 }
+
+tasks.sonar {
+    dependsOn("check")
+}
