@@ -5,10 +5,10 @@ plugins {
     alias(libs.plugins.spring.dependency.management)
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.spring)
-    alias(libs.plugins.spotless)
     alias(libs.plugins.sonarqube)
     alias(libs.plugins.test.logger)
     id("de.bund.digitalservice.license-report-conventions")
+    id("de.bund.digitalservice.spotless-conventions")
     id("de.bund.digitalservice.version-catalog-conventions")
     id("jacoco")
     id("jacoco-report-aggregation")
@@ -179,32 +179,5 @@ sonar {
         property("sonar.projectKey", "digitalservicebund_kotlin-application-template")
         property("sonar.organization", "digitalservicebund")
         property("sonar.host.url", "https://sonarcloud.io")
-    }
-}
-
-spotless {
-    kotlin {
-        ktlint()
-    }
-    kotlinGradle {
-        ktlint()
-    }
-    format("misc") {
-        target(
-            "**/*.js",
-            "**/*.json",
-            "**/*.md",
-            "**/*.properties",
-            "**/*.sh",
-            "**/*.yml",
-        )
-        targetExclude("buildSrc/build/**")
-        prettier(
-            mapOf(
-                "prettier" to "2.6.1",
-                "prettier-plugin-sh" to "0.7.1",
-                "prettier-plugin-properties" to "0.1.0",
-            ),
-        ).config(mapOf("keySeparator" to "="))
     }
 }
