@@ -18,7 +18,10 @@ spotless {
             "**/*.sh",
             "**/*.yml",
         )
-        targetExclude("buildSrc/build/**")
+        targetExclude(
+            "buildSrc/.gradle/**",
+            "buildSrc/build/**",
+        )
         prettier(
             mapOf(
                 "prettier" to "2.6.1",
