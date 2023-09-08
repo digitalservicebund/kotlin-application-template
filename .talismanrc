@@ -1,13 +1,18 @@
+threshold: medium
+allowed_patterns:
+  - uses:\ ([A-z0-9\-]+\/)*[A-z0-9\-]+@[a-fA-F0-9]+
+  - password:\ \${{\ secrets.GITHUB_TOKEN\ }}
+  - CONTAINER_REGISTRY_PASSWORD=\${{\ secrets.GITHUB_TOKEN\ }}
+  - TRIVY_PASSWORD:\ \${{\ secrets.GITHUB_TOKEN\ }}
+  - sonar.projectKey
+  - "Secrets\ scan\ :point_right:"
+  - message\ passing
+  - keyless
+  - snakeyaml
+  - key:\ \${{\ runner.os\ }}-sonar
+  - https://github.com/jk1/Gradle-License-Report/blob/7cf695c38126b63ef9e907345adab84dfa92ea0e/src/main/resources/default-license-normalizer-bundle.json
 fileignoreconfig:
   - filename: README.md
     ignore_detectors: [filecontent]
-  - filename: gradle/libs.versions.toml
-    ignore_detectors: [filecontent]
   - filename: build.gradle.kts
     checksum: 09304b63f048e12a866dbbedec91f4e5ad268cec0ddce1beddaa606851d91cc2
-  - filename: .github/workflows/pipeline.yml
-    checksum: 4a5279c034319fff818a381b7b0aa91f477d2516f80cb65c843e2c09bd3577de
-  - filename: .github/workflows/secrets-check.yml
-    checksum: ca5af484081e19dc002ded9374cc453d3f609e962e2e16c5fa27dc9861ec421e
-  - filename: .github/workflows/scan.yml
-    checksum: 88c1ad64580c0b547d3a60b27590b4843fa0dedfed0e43ab6d18e8a978f87239
