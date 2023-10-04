@@ -122,8 +122,9 @@ tasks {
 
     bootBuildImage {
         val containerRegistry = System.getenv("CONTAINER_REGISTRY") ?: "ghcr.io"
-        val containerImageName = System.getenv("CONTAINER_IMAGE_NAME")
-            ?: "digitalservicebund/${rootProject.name}"
+        val containerImageName =
+            System.getenv("CONTAINER_IMAGE_NAME")
+                ?: "digitalservicebund/${rootProject.name}"
         val containerImageVersion = System.getenv("CONTAINER_IMAGE_VERSION") ?: "latest"
 
         imageName.set("$containerRegistry/$containerImageName:$containerImageVersion")
@@ -221,9 +222,10 @@ licenseReport {
 // If there's a new dependency with a yet unknown license causing this task to fail
 // the license(s) will be listed in build/reports/dependency-license/dependencies-without-allowed-license.json
     allowedLicensesFile = File("$projectDir/allowed-licenses.json")
-    filters = arrayOf(
-        // With second arg true we get the default transformations:
-        // https://github.com/jk1/Gradle-License-Report/blob/7cf695c38126b63ef9e907345adab84dfa92ea0e/src/main/resources/default-license-normalizer-bundle.json
-        LicenseBundleNormalizer(null, true),
-    )
+    filters =
+        arrayOf(
+            // With second arg true we get the default transformations:
+            // https://github.com/jk1/Gradle-License-Report/blob/7cf695c38126b63ef9e907345adab84dfa92ea0e/src/main/resources/default-license-normalizer-bundle.json
+            LicenseBundleNormalizer(null, true),
+        )
 }

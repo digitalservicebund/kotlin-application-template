@@ -6,8 +6,7 @@ import com.tngtech.archunit.library.dependencies.SlicesRuleDefinition.slices
 
 @AnalyzeClasses(packages = ["de.bund.digitalservice"])
 class ArchitectureFitnessTest {
-
     @ArchTest
-    val `packages should be free of cycles` =
+    val packagesShouldBeFreeOfCycles =
         slices().matching("de.bund.digitalservice.(**)").should().beFreeOfCycles()
 }

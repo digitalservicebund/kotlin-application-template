@@ -10,7 +10,6 @@ import org.springframework.security.web.server.SecurityWebFilterChain
 @Configuration
 @EnableWebFluxSecurity
 class SecurityConfig {
-
     @Bean
     fun springSecurityWebFilterChain(http: ServerHttpSecurity): SecurityWebFilterChain {
         return http.invoke {

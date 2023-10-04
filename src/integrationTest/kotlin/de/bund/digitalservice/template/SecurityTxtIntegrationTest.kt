@@ -8,8 +8,9 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.reactive.server.WebTestClient
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class SecurityTxtIntegrationTest(@Autowired val webTestClient: WebTestClient) {
-
+class SecurityTxtIntegrationTest(
+    @Autowired val webTestClient: WebTestClient,
+) {
     fun getSecurityTxt() = webTestClient.get().uri("/.well-known/security.txt").exchange()
 
     @Test
