@@ -44,6 +44,9 @@ dependencies {
     // CVE-2022-1471
     implementation(libs.snakeyaml)
 
+    // CVE-2023-34062
+    implementation(libs.reactor.netty.http)
+
     developmentOnly(libs.spring.boot.devtools)
 }
 
