@@ -41,6 +41,10 @@ dependencies {
     implementation(libs.kotlin.stdlib.jdk8)
     implementation(libs.kotlinx.coroutines.reactor)
 
+    // CVE-2023-6378 / CVE-2023-6481
+    implementation(libs.logback.classic)
+    implementation(libs.logback.core)
+
     // CVE-2022-1471
     implementation(libs.snakeyaml)
 
