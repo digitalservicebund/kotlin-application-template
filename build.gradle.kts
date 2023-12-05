@@ -1,11 +1,10 @@
 plugins {
-    alias(libs.plugins.spring.boot)
-    alias(libs.plugins.spring.dependency.management)
     alias(libs.plugins.kotlin.spring)
     id("de.bund.digitalservice.license-report-conventions")
     id("de.bund.digitalservice.kotlin-conventions")
     id("de.bund.digitalservice.sonar-conventions")
     id("de.bund.digitalservice.spotless-conventions")
+    id("de.bund.digitalservice.spring-boot-image-conventions")
     id("de.bund.digitalservice.test-conventions")
     id("de.bund.digitalservice.version-catalog-conventions")
 }
@@ -64,29 +63,6 @@ testing {
                 implementation(libs.springmockk)
                 implementation(libs.reactor.test)
                 implementation(libs.spring.security.test)
-            }
-        }
-    }
-}
-
-tasks {
-
-    bootBuildImage {
-        val containerRegistry = System.getenv("CONTAINER_REGISTRY") ?: "ghcr.io"
-        val containerImageName =
-            System.getenv("CONTAINER_IMAGE_NAME")
-                ?: "digitalservicebund/${rootProject.name}"
-        val containerImageVersion = System.getenv("CONTAINER_IMAGE_VERSION") ?: "latest"
-
-        imageName.set("$containerRegistry/$containerImageName:$containerImageVersion")
-        builder.set("paketobuildpacks/builder-jammy-tiny")
-        publish.set(false)
-
-        docker {
-            publishRegistry {
-                username.set(System.getenv("CONTAINER_REGISTRY_USER") ?: "")
-                password.set(System.getenv("CONTAINER_REGISTRY_PASSWORD") ?: "")
-                url.set("https://$containerRegistry")
             }
         }
     }

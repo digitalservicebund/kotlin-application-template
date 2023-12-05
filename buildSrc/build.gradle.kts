@@ -8,6 +8,8 @@ dependencies {
     implementation(plugin(libs.plugins.kotlin.jvm))
     implementation(plugin(libs.plugins.sonarqube))
     implementation(plugin(libs.plugins.spotless))
+    implementation(plugin(libs.plugins.spring.boot))
+    implementation(plugin(libs.plugins.spring.dependency.management))
     implementation(plugin(libs.plugins.test.logger))
     implementation(plugin(libs.plugins.version.catalog.update))
     implementation(plugin(libs.plugins.versions))
