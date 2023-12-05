@@ -9,8 +9,6 @@ plugins {
     id("de.bund.digitalservice.version-catalog-conventions")
 }
 
-group = "de.bund.digitalservice"
-version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 dependencies {
