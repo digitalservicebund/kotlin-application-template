@@ -1,4 +1,3 @@
-import com.github.jk1.license.filter.LicenseBundleNormalizer
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -8,8 +7,8 @@ plugins {
     alias(libs.plugins.kotlin.spring)
     alias(libs.plugins.spotless)
     alias(libs.plugins.sonarqube)
-    alias(libs.plugins.dependency.license.report)
     alias(libs.plugins.test.logger)
+    id("de.bund.digitalservice.license-report-conventions")
     id("de.bund.digitalservice.version-catalog-conventions")
     id("jacoco")
     id("jacoco-report-aggregation")
@@ -208,16 +207,4 @@ spotless {
             ),
         ).config(mapOf("keySeparator" to "="))
     }
-}
-
-licenseReport {
-// If there's a new dependency with a yet unknown license causing this task to fail
-// the license(s) will be listed in build/reports/dependency-license/dependencies-without-allowed-license.json
-    allowedLicensesFile = File("$projectDir/allowed-licenses.json")
-    filters =
-        arrayOf(
-            // With second arg true we get the default transformations:
-            // https://github.com/jk1/Gradle-License-Report/blob/7cf695c38126b63ef9e907345adab84dfa92ea0e/src/main/resources/default-license-normalizer-bundle.json
-            LicenseBundleNormalizer(null, true),
-        )
 }

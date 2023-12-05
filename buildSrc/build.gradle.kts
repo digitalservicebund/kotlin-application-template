@@ -3,6 +3,7 @@ plugins {
 }
 
 dependencies {
+    implementation(plugin(libs.plugins.dependency.license.report))
     implementation(plugin(libs.plugins.version.catalog.update))
     implementation(plugin(libs.plugins.versions))
 }
