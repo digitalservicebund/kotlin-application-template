@@ -19,8 +19,8 @@ spotless {
             "**/*.yml",
         )
         targetExclude(
-            "buildSrc/.gradle/**",
-            "buildSrc/build/**",
+            "gradle-conventions/.gradle/**",
+            "gradle-conventions/build/**",
         )
         prettier(
             mapOf(
