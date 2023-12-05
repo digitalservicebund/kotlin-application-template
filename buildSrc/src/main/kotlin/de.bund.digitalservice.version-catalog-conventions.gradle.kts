@@ -15,3 +15,10 @@ tasks {
         rejectVersionIf { !isStable(candidate.version) }
     }
 }
+
+versionCatalogUpdate {
+    keep {
+        versions.set(listOf("jacoco"))
+        keepUnusedPlugins.set(true)
+    }
+}
