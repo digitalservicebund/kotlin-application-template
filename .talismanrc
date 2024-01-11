@@ -15,4 +15,4 @@ fileignoreconfig:
   - filename: README.md
     ignore_detectors: [filecontent]
   - filename: build.gradle.kts
-    checksum: 09304b63f048e12a866dbbedec91f4e5ad268cec0ddce1beddaa606851d91cc2
+    checksum: 77b3ebb74c1ff33229ad194d91acaff773bc014904846710554118421277dc04
