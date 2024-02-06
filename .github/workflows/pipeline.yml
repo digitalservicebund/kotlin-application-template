@@ -16,6 +16,7 @@ env:
   CONTAINER_IMAGE_NAME: ${{ github.repository }}
   CONTAINER_IMAGE_VERSION: ${{ github.sha }}
   INFRA_REPO: kotlin-application-template-infra
+  DEPLOYING_REPO: kotlin-application-template
 
 jobs:
   validate-gradle-wrapper:
@@ -227,7 +228,7 @@ jobs:
         with:
           environment: staging
           version: ${{ env.CONTAINER_IMAGE_VERSION }}
-          deploying_repo: ${{ github.repository }}
+          deploying_repo: ${{ env.DEPLOYING_REPO }}
           infra_repo: ${{ env.INFRA_REPO }}
           deploy_key: ${{ secrets.DEPLOY_KEY }}
           app: kotlin-application-template-staging
