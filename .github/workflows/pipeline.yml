@@ -230,6 +230,6 @@ jobs:
           deploying_repo: ${{ github.repository }}
           infra_repo: ${{ env.INFRA_REPO }}
           deploy_key: ${{ secrets.DEPLOY_KEY }}
-          app: <APP-NAME-ENVIRONMENT> # This needs to be the name of your application in ArgoCD for this environment
+          app: kotlin-application-template-staging
           argocd_pipeline_password: ${{ secrets.ARGOCD_PIPELINE_PASSWORD }}
           argocd_server: ${{ secrets.ARGOCD_SERVER }}
