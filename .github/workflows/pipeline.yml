@@ -213,7 +213,7 @@ jobs:
         if: ${{ failure() }}
         with:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-  
+
   deploy-staging:
     runs-on: ubuntu-latest
     # Remove the filter on github.repository when using this template
