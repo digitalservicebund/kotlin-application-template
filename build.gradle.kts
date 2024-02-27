@@ -41,9 +41,6 @@ dependencies {
     implementation(libs.kotlin.stdlib.jdk8)
     implementation(libs.kotlinx.coroutines.reactor)
 
-    // CVE-2024-22234
-    implementation(libs.spring.security.core)
-
     developmentOnly(libs.spring.boot.devtools)
 }
 

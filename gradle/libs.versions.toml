@@ -2,7 +2,7 @@
 # @keep
 jacoco = "0.8.10"
 kotlin = "1.9.22"
-spring-boot = "3.2.2"
+spring-boot = "3.2.3"
 
 [libraries]
 archunit-junit5 = "com.tngtech.archunit:archunit-junit5:1.2.1"
@@ -18,8 +18,6 @@ spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-
 spring-boot-starter-security = { module = "org.springframework.boot:spring-boot-starter-security" }
 spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
 spring-boot-starter-webflux = { module = "org.springframework.boot:spring-boot-starter-webflux" }
-# CVE-2024-22234
-spring-security-core = "org.springframework.security:spring-security-core:6.2.2"
 spring-security-test = { module = "org.springframework.security:spring-security-test" }
 springmockk = "com.ninja-squad:springmockk:4.0.2"
 
