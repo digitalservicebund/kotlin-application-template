@@ -22,7 +22,7 @@ spring-security-test = { module = "org.springframework.security:spring-security-
 springmockk = "com.ninja-squad:springmockk:4.0.2"
 
 [plugins]
-dependency-license-report = "com.github.jk1.dependency-license-report:2.5"
+dependency-license-report = "com.github.jk1.dependency-license-report:2.6"
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
 sonarqube = "org.sonarqube:4.4.1.3373"
