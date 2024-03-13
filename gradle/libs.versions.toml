@@ -1,8 +1,8 @@
 [versions]
 # @keep
 jacoco = "0.8.10"
-kotlin = "1.9.22"
-spring-boot = "3.2.2"
+kotlin = "1.9.23"
+spring-boot = "3.2.3"
 
 [libraries]
 archunit-junit5 = "com.tngtech.archunit:archunit-junit5:1.2.1"
@@ -22,7 +22,7 @@ spring-security-test = { module = "org.springframework.security:spring-security-
 springmockk = "com.ninja-squad:springmockk:4.0.2"
 
 [plugins]
-dependency-license-report = "com.github.jk1.dependency-license-report:2.5"
+dependency-license-report = "com.github.jk1.dependency-license-report:2.6"
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
 sonarqube = "org.sonarqube:4.4.1.3373"
@@ -30,5 +30,5 @@ spotless = "com.diffplug.spotless:6.25.0"
 spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
 spring-dependency-management = "io.spring.dependency-management:1.1.4"
 test-logger = "com.adarshr.test-logger:4.0.0"
-version-catalog-update = "nl.littlerobots.version-catalog-update:0.8.3"
+version-catalog-update = "nl.littlerobots.version-catalog-update:0.8.4"
 versions = "com.github.ben-manes.versions:0.51.0"

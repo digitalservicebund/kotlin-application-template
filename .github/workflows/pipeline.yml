@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Validate gradle wrapper
-        uses: gradle/wrapper-validation-action@27152f6fa06a6b8062ef7195c795692e51fc2c81
+        uses: gradle/wrapper-validation-action@85cde3f5a1033b2adc2442631c24b530f1183a1a
 
   build:
     runs-on: ubuntu-latest
@@ -37,7 +37,7 @@ jobs:
           java-version: "17.0"
           distribution: "temurin"
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@ec92e829475ac0c2315ea8f9eced72db85bb337a # v3.0.0
+        uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
       - name: Build with Gradle
         run: ./gradlew build
       - name: Send status to Slack
@@ -57,7 +57,7 @@ jobs:
           java-version: "17.0"
           distribution: "temurin"
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@ec92e829475ac0c2315ea8f9eced72db85bb337a # v3.0.0
+        uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
       - name: Run license scanner
         run: ./gradlew checkLicense
       - name: Send status to Slack
@@ -80,13 +80,13 @@ jobs:
           java-version: "17.0"
           distribution: "temurin"
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@ec92e829475ac0c2315ea8f9eced72db85bb337a # v3.0.0
+        uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
       - name: Build container image
         run: ./gradlew bootBuildImage
       - name: Run Trivy vulnerability scanner
         # Third-party action, pin to commit SHA!
         # See https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions
-        uses: aquasecurity/trivy-action@91713af97dc80187565512baba96e4364e983601
+        uses: aquasecurity/trivy-action@062f2592684a31eb3aa050cc61e7ca1451cecd3d
         with:
           image-ref: ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}:${{ env.CONTAINER_IMAGE_VERSION }}
           format: "sarif"
@@ -99,7 +99,7 @@ jobs:
       - name: Generate cosign vulnerability scan record
         # Third-party action, pin to commit SHA!
         # See https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions
-        uses: aquasecurity/trivy-action@91713af97dc80187565512baba96e4364e983601
+        uses: aquasecurity/trivy-action@062f2592684a31eb3aa050cc61e7ca1451cecd3d
         with:
           image-ref: ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}:${{ env.CONTAINER_IMAGE_VERSION }}
           format: "cosign-vuln"
@@ -135,7 +135,7 @@ jobs:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@ec92e829475ac0c2315ea8f9eced72db85bb337a # v3.0.0
+        uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
       - name: Scan with SonarQube
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
@@ -178,7 +178,7 @@ jobs:
           java-version: "17.0"
           distribution: "temurin"
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@ec92e829475ac0c2315ea8f9eced72db85bb337a # v3.0.0
+        uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
       - name: Build and publish container image
         run: CONTAINER_REGISTRY_USER=${{ github.actor }} CONTAINER_REGISTRY_PASSWORD=${{ secrets.GITHUB_TOKEN }} ./gradlew bootBuildImage --publishImage
       - name: Install cosign
