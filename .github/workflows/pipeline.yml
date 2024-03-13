@@ -224,7 +224,7 @@ jobs:
     needs: build-and-push-image
     steps:
       - name: Deploy latest container image
-        uses: digitalservice4germany/github-actions/argocd-deploy@0ec47e73b6068bde71db075af6bf9ae27cb08b1b
+        uses: digitalservicebund/argocd-deploy@4fac1bb67c92ed168f6d9b22f8779ce241a9e412 # v1.0.0
         with:
           environment: staging
           version: ${{ env.CONTAINER_IMAGE_VERSION }}
