@@ -194,7 +194,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Create SBOM
-        uses: digitalservicebund/create-sbom@8ef8bf302e51261e9f4c25040369ee6409850030
+        uses: digitalservicebund/create-sbom@095884614dac5ea922dfcb09cce2e22f3d6391a3
         with:
           image_name: ${{ env.CONTAINER_IMAGE_NAME }}:${{ env.CONTAINER_IMAGE_VERSION }}
       - name: Sign the published Docker image
