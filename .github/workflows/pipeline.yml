@@ -37,7 +37,7 @@ jobs:
           java-version: "17.0"
           distribution: "temurin"
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@d0f2f0387e6ef0dce1fca38d0482617633e9d63a # v3.3.0
+        uses: gradle/actions/setup-gradle@9ab93ee86419508c6afdca6bd7a6c787da56bfb6 # v3.3.0
       - name: Build with Gradle
         run: ./gradlew build
       - name: Send status to Slack
@@ -57,7 +57,7 @@ jobs:
           java-version: "17.0"
           distribution: "temurin"
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@d0f2f0387e6ef0dce1fca38d0482617633e9d63a # v3.3.0
+        uses: gradle/actions/setup-gradle@9ab93ee86419508c6afdca6bd7a6c787da56bfb6 # v3.3.0
       - name: Run license scanner
         run: ./gradlew checkLicense
       - name: Send status to Slack
@@ -80,7 +80,7 @@ jobs:
           java-version: "17.0"
           distribution: "temurin"
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@d0f2f0387e6ef0dce1fca38d0482617633e9d63a # v3.3.0
+        uses: gradle/actions/setup-gradle@9ab93ee86419508c6afdca6bd7a6c787da56bfb6 # v3.3.0
       - name: Build container image
         run: ./gradlew bootBuildImage
       - name: Run Trivy vulnerability scanner
@@ -135,7 +135,7 @@ jobs:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@d0f2f0387e6ef0dce1fca38d0482617633e9d63a # v3.3.0
+        uses: gradle/actions/setup-gradle@9ab93ee86419508c6afdca6bd7a6c787da56bfb6 # v3.3.0
       - name: Scan with SonarQube
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
@@ -178,7 +178,7 @@ jobs:
           java-version: "17.0"
           distribution: "temurin"
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@d0f2f0387e6ef0dce1fca38d0482617633e9d63a # v3.3.0
+        uses: gradle/actions/setup-gradle@9ab93ee86419508c6afdca6bd7a6c787da56bfb6 # v3.3.0
       - name: Build and publish container image
         run: CONTAINER_REGISTRY_USER=${{ github.actor }} CONTAINER_REGISTRY_PASSWORD=${{ secrets.GITHUB_TOKEN }} ./gradlew bootBuildImage --publishImage
       - name: Install cosign
