@@ -2,7 +2,7 @@
 # @keep
 jacoco = "0.8.10"
 kotlin = "2.0.0"
-spring-boot = "3.2.5"
+spring-boot = "3.3.0"
 
 [libraries]
 archunit-junit5 = "com.tngtech.archunit:archunit-junit5:1.3.0"
