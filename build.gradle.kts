@@ -45,6 +45,8 @@ dependencies {
     implementation(libs.kotlin.stdlib.jdk8)
     implementation(libs.kotlinx.coroutines.reactor)
 
+    runtimeOnly(libs.micrometer.registry.prometheus)
+
     developmentOnly(libs.spring.boot.devtools)
 }
 

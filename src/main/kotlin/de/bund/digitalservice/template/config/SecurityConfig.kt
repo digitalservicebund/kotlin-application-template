@@ -16,6 +16,7 @@ class SecurityConfig {
             authorizeExchange {
                 authorize("/.well-known/security.txt", permitAll)
                 authorize("/actuator/health", permitAll)
+                authorize("/actuator/prometheus", permitAll)
                 authorize("/", permitAll)
                 authorize(anyExchange, denyAll)
             }
