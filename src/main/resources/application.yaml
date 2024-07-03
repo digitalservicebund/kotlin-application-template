@@ -1,0 +1,21 @@
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: health,prometheus
+  endpoint:
+    health:
+      enabled: true
+      group:
+        liveness:
+          include: livenessState
+        readiness:
+          include: readinessState
+    prometheus:
+      enabled: true
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
+      enabled: true
