@@ -44,6 +44,7 @@ dependencies {
     implementation(libs.kotlin.reflect)
     implementation(libs.kotlin.stdlib.jdk8)
     implementation(libs.kotlinx.coroutines.reactor)
+    implementation(libs.netty.common)
 
     runtimeOnly(libs.micrometer.registry.prometheus)
 
