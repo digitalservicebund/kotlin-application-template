@@ -197,10 +197,10 @@ sonar {
 
 spotless {
     kotlin {
-        ktlint()
+        ktlint("1.5.0")
     }
     kotlinGradle {
-        ktlint()
+        ktlint("1.5.0")
     }
     format("misc") {
         target(
