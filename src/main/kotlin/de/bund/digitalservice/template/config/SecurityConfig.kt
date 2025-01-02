@@ -11,8 +11,8 @@ import org.springframework.security.web.server.SecurityWebFilterChain
 @EnableWebFluxSecurity
 class SecurityConfig {
     @Bean
-    fun springSecurityWebFilterChain(http: ServerHttpSecurity): SecurityWebFilterChain {
-        return http.invoke {
+    fun springSecurityWebFilterChain(http: ServerHttpSecurity): SecurityWebFilterChain =
+        http.invoke {
             authorizeExchange {
                 authorize("/.well-known/security.txt", permitAll)
                 authorize("/actuator/health", permitAll)
@@ -21,5 +21,4 @@ class SecurityConfig {
                 authorize(anyExchange, denyAll)
             }
         }
-    }
 }

@@ -171,7 +171,8 @@ reporting {
             reportTask {
                 executionData.from(
                     configurations["aggregateCodeCoverageReportResults"]
-                        .incoming.artifactView {
+                        .incoming
+                        .artifactView {
                             lenient(true)
                             withVariantReselection()
                             attributes {

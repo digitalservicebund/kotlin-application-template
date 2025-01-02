@@ -12,6 +12,11 @@ class HelloWorldIntegrationTest(
 ) {
     @Test
     fun `should expose hello world`() {
-        webTestClient.get().uri("/").exchange().expectStatus().isOk()
+        webTestClient
+            .get()
+            .uri("/")
+            .exchange()
+            .expectStatus()
+            .isOk()
     }
 }
