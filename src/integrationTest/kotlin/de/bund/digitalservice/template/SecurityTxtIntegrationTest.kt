@@ -16,9 +16,12 @@ class SecurityTxtIntegrationTest(
     @Test
     fun `should expose security txt at well known location`() {
         getSecurityTxt()
-            .expectStatus().isOk()
-            .expectHeader().contentType(MediaType.TEXT_PLAIN)
-            .expectBody().consumeWith { response ->
+            .expectStatus()
+            .isOk()
+            .expectHeader()
+            .contentType(MediaType.TEXT_PLAIN)
+            .expectBody()
+            .consumeWith { response ->
                 Assertions.assertThat(response.responseBody).isNotEmpty
             }
     }

@@ -12,6 +12,11 @@ class HealthEndpointIntegrationTest(
 ) {
     @Test
     fun `should expose health endpoint`() {
-        webTestClient.get().uri("/actuator/health").exchange().expectStatus().isOk()
+        webTestClient
+            .get()
+            .uri("/actuator/health")
+            .exchange()
+            .expectStatus()
+            .isOk()
     }
 }
