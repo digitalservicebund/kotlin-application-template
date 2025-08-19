@@ -46,6 +46,10 @@ dependencies {
     implementation(libs.kotlinx.coroutines.reactor)
     implementation(libs.netty.common)
 
+    // Fix for CVE-2025-55163. Should be removed after parent dependency is up-to-date
+    // > spring-boot-starter-webflux:3.5.0
+    implementation("io.netty:netty-codec-http2:4.2.4.Final")
+
     runtimeOnly(libs.micrometer.registry.prometheus)
 
     developmentOnly(libs.spring.boot.devtools)
