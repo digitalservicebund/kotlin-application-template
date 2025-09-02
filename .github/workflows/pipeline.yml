@@ -114,6 +114,8 @@ jobs:
 
   analyze:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     if: ${{ github.ref == 'refs/heads/main' }}
     needs: [build, vulnerability-scan]
     steps:
