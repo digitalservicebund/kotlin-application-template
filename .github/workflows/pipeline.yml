@@ -211,6 +211,7 @@ jobs:
 
   deploy-staging:
     runs-on: ubuntu-latest
+    permissions: {}
     # Remove the filter on github.repository when using this template
     if: ${{ github.ref == 'refs/heads/main' && github.repository == 'digitalservicebund/kotlin-application-template' }}
     environment: staging
