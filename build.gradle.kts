@@ -48,7 +48,7 @@ dependencies {
 
     // Fix for CVE-2025-55163. Should be removed after parent dependency is up-to-date
     // > spring-boot-starter-webflux:3.5.0
-    implementation("io.netty:netty-codec-http2:4.2.5.Final")
+    implementation("io.netty:netty-codec-http2:4.2.6.Final")
 
     runtimeOnly(libs.micrometer.registry.prometheus)
 
