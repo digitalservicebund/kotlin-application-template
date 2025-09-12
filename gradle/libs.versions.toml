@@ -1,7 +1,7 @@
 [versions]
 # @keep
 jacoco = "0.8.12"
-kotlin = "2.2.10"
+kotlin = "2.2.20"
 spring-boot = "3.5.5"
 
 [libraries]
